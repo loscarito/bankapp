@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la Notification{% endblock %}
+
+{% block body %}
+    <h1>Modifier la Notification</h1>
+
+    {{ include('notification/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    <a href="{{ path('notification_index') }}">Retour à la liste</a>
+
+    {{ include('notification/_delete_form.html.twig') }}
+{% endblock %}

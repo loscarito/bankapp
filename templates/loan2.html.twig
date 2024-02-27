@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}{# Modèle Twig vide #}
+
+
+{% block body %}
+<div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_home') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Demander un prêt
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+     <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2">
+
+           <div class="card">
+                <div class="card-body">
+                    <form action="{{ path('bk_loan_ask')}}" method="POST"  class="">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Montant du prêt</label>
+                            {{ form_widget(form.amount,{'attr': {'class': 'form-control','placeholder':'5000'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Durée</label>
+                            {{ form_widget(form.duration,{'attr': {'class': 'form-control','placeholder':'nombre de mois'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Plus de détails</label>
+                            {{ form_widget(form.detail,{'attr': {'class': 'form-control','placeholder':'plus de détails sur la demande de prêt'}}) }}
+                        </div><br>
+                        {{ form_rest(form) }}
+                        <button type="submit" class="btn btn-info pull-right">Valider</button>
+                    </form>
+
+                    {% for message in app.flashes('notice') %}
+                        <div class="flash-notice">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- * App Capsule -->
+
+    
+
+{% endblock %}

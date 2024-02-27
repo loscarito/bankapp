@@ -1,0 +1,177 @@
+{% extends "base.html.twig" %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_home') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Menu Principal
+                <span class="right badge badge-danger">Nouveau</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_statement') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Relevé Électronique
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_tr1_add') }}" class="nav-link">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Transfert de Fond
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_cc_list') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Carte de Crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan_ask') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Demande de Prêt
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan') }}" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Menu des Prêts
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_dest_add') }}" class="nav-link active">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Ajouter un Bénéficiaire
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_recip') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Mes Bénéficiaires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_help') }}" class="nav-link">
+            <i class="nav-icon fas fa-question-circle"></i>
+            <p>
+                Obtenir de l'Aide
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+{% endblock %}
+
+{% block body %}
+ <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2">
+
+           <div class="card">
+                <div class="card-body">
+                    <form action="{{ path('bk_dest_add')}}" method="POST"  class="">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Prénom</label>
+        {{ form_widget(form.nom,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nom de Famille</label>
+        {{ form_widget(form.prenom,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nom de la Banque du Bénéficiaire</label>
+        {{ form_widget(form.destinationBank,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Swift/BIC</label>
+        {{ form_widget(form.swift,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">IBAN</label>
+        {{ form_widget(form.iban,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Numéro de Compte</label>
+        {{ form_widget(form.accountNo,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Pays</label>
+        {{ form_widget(form.pays,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Ville</label>
+        {{ form_widget(form.ville,{'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Adresse</label>
+        {{ form_widget(form.address,{'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Code Postal</label>
+        {{ form_widget(form.postal,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputNumber">Numéro de Téléphone</label>
+        {{ form_widget(form.tel,{'attr': {'class': 'form-control','aria-invalid':'true','aria-describedby':'exampleInputNumber-error'}}) }}
+        <span id="exampleInputNumber-error" class="error invalid-feedback">Veuillez entrer un numéro de téléphone valide</span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Adresse Email</label>
+        {{ form_widget(form.email,{'attr': {'class': 'form-control','aria-invalid':'true','aria-describedby':'exampleInputEmail1-error'}}) }}
+        <span id="exampleInputEmail1-error" class="error invalid-feedback">Veuillez entrer une adresse email valide</span>
+    </div><br>
+    {{ form_rest(form) }}
+    <button type="submit" class="btn btn-info pull-right">Valider</button>
+</form>
+
+                    {% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- * App Capsule -->
+
+
+
+
+{% endblock %}

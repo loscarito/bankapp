@@ -1,0 +1,172 @@
+{% extends "base.html.twig" %}{# Modèle Twig vide #}
+{% block menu %}
+    <li class="nav-item">
+            <a href="{{ path('bk_home') }}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Tableau de bord
+                <i class="right"></i>
+              </p>
+            </a>
+            
+          </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_statement') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Relevé électronique
+                <span class="badge badge-info right">{{ app.user.user.account.transactions | length }}</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+            <a href="{{ path('bk_tr1_add') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Transfert
+                
+              </p>
+            </a>
+          </li>
+          
+         
+          
+
+    <li class="nav-item">
+        <a href="{{ path('bk_cc_list') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Carte de crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan_ask') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Demande de prêt
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan') }}" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Menu des prêts
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_recip') }}" class="nav-link active">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Mes bénéficiaires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+    <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tools"></i>
+              <p>
+                Paramètres
+                
+              </p>
+            </a>
+            
+          </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_help') }}" class="nav-link">
+            <i class="nav-icon fas fa-question-circle"></i>
+            <p>
+                Obtenir de l'aide
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+{% endblock %}
+
+{% block body %}
+<div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_home') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Mes bénéficiaires
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+ <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Mes bénéficiaires</h3>
+                </div>
+                <div class="card-body">
+                <a href="{{ path('bk_dest_add')}}" type="button" class="btn btn-primary btn-block">Ajouter destinataire</a>
+                 {% if app.user.user.receptors is not empty %}
+                    {% for recipient in app.user.user.receptors  %}
+                       <ul class="listview flush transparent simple-listview no-space mt-3">
+                        <li>
+                            <strong>Nom</strong>
+                            <span>{{ recipient.nom }} {{ recipient.prenom }}</span>
+                        </li>
+                        <li>
+                            <strong>IBAN</strong>
+                            <span>{{ recipient.iban }}</span>
+                        </li>
+                    
+                        <li>
+                            <strong>Numéro de compte</strong>
+                            <span>{{ recipient.accountNo }}</span>
+                        </li>
+                        <li>
+                            <strong>Adresse complète</strong>
+                            <span>{{ recipient.address }}, {{ recipient.ville }}, {{ recipient.postal }}, {{ recipient.pays }}</span>
+                        </li>
+                        <li>
+                            <strong>Statut</strong>
+                            <span>{% if recipient.isVerify %}Vérifié{% endif %}{% if recipient.isVerify==false %}Non vérifié{% endif %}</span>
+                        </li>
+                        
+                    </ul>
+                    {% if recipient.isVerify %}<a href="#" class="btn btn-danger">Supprimer</a>{% endif %}{% if recipient.isVerify == false %}<a href="{{ path('bk_rec_verify',{'receptor': recipient.id}) }}" class="btn btn-success">Vérifier</a>{% endif %}<br>
+                   
+                    {% endfor %}
+                    {% endif %}
+                    {% if app.user.user.receptors is empty %}
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Alerte !</h5>
+                            Vous n'avez pas encore de bénéficiaire.
+                        </div>
+                    {% endif %}
+                    
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- * App Capsule -->
+    
+{% endblock %}

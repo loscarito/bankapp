@@ -1,0 +1,218 @@
+{% extends "base.html.twig" %}{# Modèle Twig vide #}
+
+
+
+{% block body %}
+<div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_home') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Liste des demandes de prêt
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+ <!-- App Capsule -->
+  
+    <div id="appCapsule">
+
+        <div class="section mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="avatar-section">
+                        <a href="{{ path('bk_upload') }}">
+                        <img src="{{ asset('upload_dir/'~app.user.user.image.src) }}" alt="avatar" class="imaged w100 rounded">
+                            <span class="button">
+                            <ion-icon name="camera-outline"></ion-icon>
+                            </span>
+                        </a>
+                    </div>
+                    <br><br>
+                <form>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nom complet du client</label>
+                            <input type="text" value="{{ app.user.user.nom }} {{ app.user.user.prenom }}" class="form-control" disabled="">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Date de naissance</label>
+                            <input type="text" class="form-control" value="1992-09-12" disabled="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Adresse e-mail</label>
+                            <input type="email" value="{{ app.user.user.email }}" disabled="disabled" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Numéro de téléphone portable</label>
+                            <input type="text" value=" {{ app.user.user.tel }}" class="form-control" disabled="">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Code postal</label>
+                            <input type="text" class="form-control" value="{{ app.user.user.postal }}" disabled="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Pays</label>
+                            <input type="email" value="{{ app.user.user.countries }}" disabled="disabled" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Adresse résidentielle</label>
+                            <input type="text" class="form-control" value="{{ app.user.user.address }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Ville/État</label>
+                            <input type="text" class="form-control" value="{{ app.user.user.cities }}, {{ app.user.user.states }}" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Numéro de compte</label>
+                            <input type="text" class="form-control" value="{{ app.user.user.account.accountNo }}" disabled="disabled">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+
+                            <hr>
+                            <h3 style="font-weight:700; color:blue;">Informations sur l'emploi</h3>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Nom et adresse de l'employeur</label>
+                                        <input type="text" class="form-control" value="{{ app.user.user.employer }}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">État admissible au prêt</label>
+                                        <input type="text" value="{% if app.user.user.eligible %}actif{% endif %}inactif" class="form-control" disabled="">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Nature de l'emploi</label>
+                                        <input type="text" class="form-control" value="{{ app.user.user.employee }}" disabled="">
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+
+
+
+                            <hr>
+
+
+                            <h3 style="font-weight:700; color:green;">Détails de sécurité</h3>
+
+
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Question de sécurité 1</label>
+                                        <input type="text" style="width:400px;" value="{{ app.user.user.security1 }}" class="form-control" disabled="">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Réponse Un</label>
+                                        <input type="text" style="width:500px;" class="form-control" value="********" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Question de sécurité 2</label>
+                                        <input type="text" style="width:400px;" value="{{ app.user.user.security2 }}" class="form-control" disabled="">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Réponse Deux</label>
+                                        <input type="text" style="width:500px;" class="form-control" value="*********" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Question de sécurité 3</label>
+                                        <input type="text" style="width:400px;" value="{{ app.user.user.security3 }}" class="form-control" disabled="">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Réponse Trois</label>
+                                        <input type="text" style="width:500px;" class="form-control" value="*********" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">NIP du compte</label>
+                                        <input type="text" class="form-control" value="{{ app.user.user.pin }}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </form>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- * App Capsule -->
+        
+
+
+{% endblock %}

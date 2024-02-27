@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2">
+
+           <div class="section mt-2">
+            <div class="card">
+                <div class="card-body">
+                    {{ form_start(form) }}
+    <div class="input-group">
+        <div class="custom-file">
+            {{ form_widget(form.file, {'attr': {'class': 'custom-file-input'}}) }}
+                    <label class="custom-file-label" for="exampleInputFile">Choisir un fichier</label>
+                </div>
+                <div class="input-group-append">
+                    <button type="submit" class="input-group-text" id="">Envoyer</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    </div>
+    <!-- * App Capsule -->
+    
+{% endblock %}

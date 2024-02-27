@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_home') }}" class="nav-link active">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Menu Principal
+                <span class="right badge badge-danger">Nouveau</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_statement') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Relevé Électronique
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_tr1_add') }}" class="nav-link">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Transfert de Fond
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_cc_list') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Carte de Crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan_ask') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Demande de Prêt
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan') }}" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Menu des Prêts
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_dest_add') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Ajouter un Bénéficiaire
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_recip') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Mes Bénéficiaires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_help') }}" class="nav-link">
+            <i class="nav-icon fas fa-question-circle"></i>
+            <p>
+                Obtenir de l'Aide
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+{% endblock %}
+
+{% block body %}
+<form action="{{ path('bk_msg_add')}}" method="POST" class="">
+    {{ form_rest(form) }}
+    <button type="submit" class="btn btn-info pull-right">Valider</button>
+</form>
+
+{% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+{% endblock %}

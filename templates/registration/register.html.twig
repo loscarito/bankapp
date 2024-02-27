@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>La Poste :: Register</title>
+    <meta name="description" content="Finapp HTML Mobile Template">
+    <meta name="keywords"
+        content="compte, wallet, banking, prêt urgent" />
+    <link rel="icon" type="image/png" href="{{ asset('new assets/assets/img/favicon.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('new assets/assets/img/icon/192x192.png') }}">
+    <link rel="stylesheet" href="{{ asset('new assets/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('new assets/assets/css/src/splide/splide.min.css')}}">
+    <link rel="manifest" href="{{ asset('new assets/__manifest.json')}}">
+</head>
+
+<body>
+
+  
+
+    <!-- App Header -->
+    <div class="appHeader no-border transparent position-absolute">
+        <div class="left">
+            <a href="{{ path('app_login')}}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+        </div>
+    </div>
+    <!-- * App Header -->
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2 text-center">
+            <h1>Créer</h1>
+            <h4>Votre compte</h4>
+        </div>
+        <div class="section mb-5 p-2">
+
+            
+                <div class="card">
+                    <div class="card-body pb-1">
+                       {{ form_start(registrationForm) }}
+      {% if form_errors(registrationForm) %}
+          <div class="alert alert-danger">{{ form_errors(registrationForm) }}</div>
+      {% endif %}
+        <div class="input-group mb-3">
+          {{ form_widget(registrationForm.username,{'attr': {'class': 'form-control', 'placeholder':'Nom d\'utilisateur'}}) }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="input-group mb-3">
+          {{ form_widget(registrationForm.plainPassword.first,{'attr': {'class': 'form-control','placeholder':'Mot de passe'}}) }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form_widget(registrationForm.plainPassword.second,{'attr': {'class': 'form-control','placeholder':'Répéter le mot de passe'}}) }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="">
+                            {{ form_widget(registrationForm.agreeTerms) }}
+                            <label for="agreeTerms">
+                                J'accepte les <a href="#">conditions</a>
+                            </label>
+                        </div>
+          </div>
+          <!-- /.col -->
+           <div class="form-button-group  transparent">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">S'inscrire</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      {{ form_end(registrationForm) }}
+
+      <a href="{{ path('app_login') }}" class="text-center">J'ai déjà un compte</a>
+    </div>
+    <!-- * App Capsule -->
+
+
+<!-- ========= JS Files =========  -->
+    <!-- Bootstrap -->
+    <script src="{{ asset('new assets/assets/js/lib/bootstrap.bundle.min.js')}}"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="{{ asset('new assets/assets/js/plugins/splide/splide.min.js')}}"></script>
+    <!-- Base Js File -->
+
+
+</body>
+
+</html>
+
+
+      
+   
+
+
+
+

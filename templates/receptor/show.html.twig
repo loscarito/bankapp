@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Destinataire{% endblock %}
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_home') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Menu principal
+                <span class="right badge badge-danger">Nouveau</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('user_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Liste des utilisateurs
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('account_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Liste des comptes
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('message_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Liste des messages
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('loan_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Prêts
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Carte de crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('receptor_index') }}" class="nav-link active">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Tous les destinataires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('transaction_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Toutes les transactions
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+{% endblock %}
+{% block body %}
+    <h1>Destinataire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ receptor.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ receptor.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ receptor.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Swift</th>
+                <td>{{ receptor.swift }}</td>
+            </tr>
+            <tr>
+                <th>Iban</th>
+                <td>{{ receptor.iban }}</td>
+            </tr>
+            <tr>
+                <th>N° de compte</th>
+                <td>{{ receptor.accountNo }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ receptor.pays }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ receptor.ville }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ receptor.address }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ receptor.email }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ receptor.postal }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ receptor.tel }}</td>
+            </tr>
+            <tr>
+                <th>Code de vérification</th>
+                <td>{{ receptor.verificode }}</td>
+            </tr>
+            <tr>
+                <th>Vérifié</th>
+                <td>{{ receptor.isVerify ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ receptor.date ? receptor.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('receptor_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('receptor_edit', {'id': receptor.id}) }}">Éditer</a>
+
+    {{ include('receptor/_delete_form.html.twig') }}
+{% endblock %}

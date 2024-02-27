@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+ <!-- App Header -->
+    <div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_home') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Relevé électronique
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+    <!-- * App Header -->
+    <!-- App Capsule -->
+    <div id="appCapsule">
+         {% if transactions is empty %}
+            <div class="alert alert-danger alert-dismissible">
+               
+                Vous n'avez encore aucune transaction
+            </div>
+        {% endif %}
+        {% if transactions is not empty %}
+            {% set ladate = null %}                   
+            {% for transaction in transactions %}
+               
+              <div class="section mt-2">
+                {% if ladate != transaction.date |date('Y-m-d') %}
+                     <div class="section-title">{{ transaction.date |date('Y-m-d') }}</div>
+                {% endif %}
+                <div class="transactions">
+                    <!-- item -->
+                    <a href="{{ path('bk_voir_tr',{'id': transaction.id}) }}" class="item">
+                        <div class="detail">
+                            <img src="{{ transaction.isCredit ? asset('new assets/assets/img/sample/brand/vert.png') : asset('new assets/assets/img/sample/brand/rouge.png') }}" alt="img" class="image-block imaged w48">
+                            <div>
+                                <strong>{{ transaction.description }}</strong>
+                                <p>{{ transaction.depositor ? transaction.depositor : transaction.recipient.nom ~ ' ' ~ transaction.recipient.prenom }}</p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="price {{ transaction.isCredit ? '' : 'text-danger' }}"> {{ transaction.isCredit ? '+' : '-' }} {{ transaction.amount | format_currency(config.currency) }}</div>
+                        </div>
+                    </a>
+                </div>    
+
+            </div>
+             {% set ladate= transaction.date |date('Y-m-d')%}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <!-- * App Capsule -->
+{% endblock %}

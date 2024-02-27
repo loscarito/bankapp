@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}{# Modèle Twig vide #}
+
+{% block body %}
+<div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_home') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Notifications
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+ <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2">
+
+            <div class="alert alert-danger alert-dismissible">
+                           
+                            <h5><i class="icon fas fa-ban"></i>
+                            </h5>
+                            Vous n'avez aucune notification.
+                        </div>
+
+        </div>
+
+
+    </div>
+    <!-- * App Capsule -->
+{% endblock %}

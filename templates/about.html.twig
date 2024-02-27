@@ -1,0 +1,168 @@
+{% extends 'base1.html.twig' %}
+{% block menu %}
+    <li><a href="{{ path('bk_accueil') }}">Accueil</a></li>
+    <li><a style="color: #ffce3a;" href="{{ path('bk_about') }}">À Propos</a></li>
+    <li><a href="{{ path('bk_service') }}">Services</a></li>
+   
+    <li><a href="{{ path('bk_public_track') }}">Suivi des Transactions</a></li>
+    <li><a href="{{ path('bk_contact') }}">Contact</a></li>
+{% endblock %}
+{% block body %}
+      <!-- about breadcrumb area start -->
+         <section class="breadcrumb__area pt-165 pb-150 p-relative z-index-1 fix" data-bg-color="#16243E">
+             <div class="breadcrumb__bg" data-background="{{ ('assets/img/breadcrumb/bg.png')}}"></div>
+             <div class="container">
+                 <div class="row align-items-center">
+                     <div class="col-sm-6">
+                         <div class="breadcrumb__content">
+                             <h3 class="breadcrumb__title">À Propos</h3>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="breadcrumb__content">
+                             <div class="breadcrumb__list text-center text-sm-end">
+                                 <span><a href="{{path('bk_accueil')}}">Accueil</a></span>
+                                 <span class="dvdr"><i class="fa-regular fa-angle-right"></i></span>
+                                 <span>À Propos</span>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+
+         <!-- about breadcrumb area end -->
+              <!-- about area start -->
+         <section class="tp-about-area p-relative pt-130 pb-210">
+             <div class="tp-about-shape">
+                 <img src="assets/img/about/shape-3.png" alt="">
+             </div>
+             <div class="container">
+                 <div class="row">
+                     <div class="col-lg-6">
+                         <div class="tp-about-thumb-wrapper p-relative wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+                             <div class="main">
+                                 <img src="assets/img/about/img-1.jpg" alt="">
+                             </div>
+                             <img class="shape-1" src="assets/img/about/img-2.jpg" alt="">
+                             <img class="shape-2" src="assets/img/about/shape-1.png" alt="">
+                             <img class="shape-3" src="assets/img/about/shape-2.png" alt="">
+                             <img class="shape-4" src="assets/img/about/shape-4.png" alt="">
+                         </div>
+                     </div>
+                     <div class="col-lg-6">
+                         <div class="tp-about-wrapper">
+                             <div class="tp-about-title-wrapper">
+                                 <span class="tp-section-title-pre">À PROPOS DE NOUS</span>
+                                 <h3 class="tp-section-title">Des solutions qui font la différence</h3>
+                             </div>
+                             <p>{{ config.siteName }} est un système de vérification des transactions de la banque centrale, la deuxième plus grande caisse d'épargne du monde, leader dans la banque / assurance et la gestion d'actifs.
+
+         Né de la fusion entre l'assureur National-Nederlanden et le groupe NMB Postbank, il s'agit d'une grande institution financière française présente dans plus de 40 pays, dont les origines remontent à plus de 160 ans.</p>
+                             <div class="tp-about-wrapper-list">
+                                 <ul>
+                                     <li><span><i class="fa-regular fa-circle"></i></span> Prêts de fonds de roulement.</li>
+                                     <li><span><i class="fa-regular fa-circle"></i></span> Prêt à terme</li>
+                                     <li><span><i class="fa-regular fa-circle"></i></span> Banque personnelle</li>
+                                     <li><span><i class="fa-regular fa-circle"></i></span> Banque d'entreprise</li>
+                                 </ul>
+                             </div>
+                             <div class="tp-about-btn">
+                                 <a class="tp-btn" href="about.html">À propos de nous <span><i class="fa-regular fa-plus"></i></span></a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+
+         <!-- about area end -->
+         
+         <!-- faq area start -->
+         <section class="tp-faq-area p-relative pt-120 pb-120" data-background="assets/img/faq/bg-shape.png">
+    <div class="tp-faq-bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="tp-faq-wrapper">
+                    <div class="tp-faq-title-wrapper">
+                        <span class="tp-section-title-pre">Posez toutes vos questions</span>
+                        <h3 class="tp-section-title">Vous pouvez nous contacter pour toute question</h3>
+                    </div>
+                    <div class="tp-faq-counter-wrapper d-flex">
+                        <div class="tp-faq-counter d-flex align-items-center mr-20 mb-30">
+                            <div class="tp-faq-counter-icon">
+                                <span>
+                                    <img src="assets/img/faq/icon-1.svg" alt="">
+                                </span>
+                            </div>
+                            <div class="tp-faq-counter-content">
+                                <h4 class="tp-faq-counter-title"><span class="purecounter" data-purecounter-duration="3" data-purecounter-end="10"></span>+</h4>
+                                <p>Expériences</p>
+                            </div>
+                        </div>
+                        <div class="tp-faq-counter d-flex align-items-center mb-30">
+                            <div class="tp-faq-counter-icon">
+                                <span>
+                                    <img src="assets/img/faq/icon-2.svg" alt="">
+                                </span>
+                            </div>
+                            <div class="tp-faq-counter-content">
+                                <h4 class="tp-faq-counter-title"><span class="purecounter" data-purecounter-duration="2" data-purecounter-end="500"></span>+</h4>
+                                <p>Clients satisfaits</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="tp-faq-tab-content tp-accordion wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">
+                    <div class="accordion" id="general_accordion">
+                        <div class="accordion-item tp-faq-active">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Qu'est-ce que le conseil en entreprise ?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#general_accordion">
+                                <div class="accordion-body">
+                                    <p>Le conseil en entreprise est un service fourni par des professionnels qui offrent des conseils d'experts et des orientations aux organisations souhaitant améliorer leurs processus, leurs stratégies et leurs opérations commerciales.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Quels types d'entreprises font généralement appel à des services de conseil ?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#general_accordion">
+                                <div class="accordion-body">
+                                    <p>En général, les rôles de conseil peuvent être regroupés dans l'une des cinq principales catégories : le conseil en stratégie, le conseil en opérations, le conseil financier, ...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Quels sont les avantages de faire appel à un service de conseil en entreprise ?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#general_accordion">
+                                <div class="accordion-body">
+                                    <p>Les principaux atouts des consultants résident dans leurs connaissances, leurs compétences d'experts et leur influence. Les consultants travaillent avec diverses entreprises...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+         <!-- faq area end -->
+
+
+
+{% endblock %}

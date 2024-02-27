@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>Propulse bank app</title>
+    <meta name="description" content="Finapp HTML Mobile Template">
+    <meta name="keywords"
+        content="compte, wallet, banking, prêt urgent" />
+    <link rel="icon" type="image/png" href="{{ asset('new assets/assets/img/favicon.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('new assets/assets/img/icon/192x192.png') }}">
+    <link rel="stylesheet" href="{{ asset('new assets/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('new assets/assets/css/src/splide/splide.min.css')}}">
+    <link rel="manifest" href="{{ asset('new assets/__manifest.json')}}">
+</head>
+
+<body>
+
+    <!-- loader 
+    <div id="loader">
+        <img src="{{ asset('new assets/assets/img/loading-icon.png') }}"')}}" alt="icon" class="loading-icon">
+    </div>
+     loader -->
+
+    
+    {% block body %}
+    {% endblock %}
+    
+
+    <!-- App Bottom Menu -->
+    <div class="appBottomMenu">
+        <a href="index.html" class="item active">
+            <div class="col">
+                <ion-icon name="pie-chart-outline"></ion-icon>
+                <strong>Tableau de bord</strong>
+            </div>
+        </a>
+        <a href="{{ path('bk_statement') }}" class="item">
+            <div class="col">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <strong>Relévé électronique</strong>
+            </div>
+        </a>
+        <a href="#" class="item">
+            <div class="col">
+                <ion-icon name="apps-outline"></ion-icon>
+                <strong>Mes informations</strong>
+            </div>
+        </a>
+       
+        <a href="{{ path('bk_profile') }}" class="item">
+            <div class="col">
+                <ion-icon name="settings-outline"></ion-icon>
+                <strong>Paramètres</strong>
+            </div>
+        </a>
+        <a href="{{ path('app_logout') }}" class="item">
+            <div class="col">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <strong>Se déconnecter</strong>
+            </div>
+        </a>
+    </div>
+    <!-- * App Bottom Menu -->
+
+    <!-- App Sidebar -->
+    <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <!-- profile box -->
+                    <div class="profileBox pt-2 pb-2">
+                        <div class="image-wrapper">
+                            <img src="{{ asset('upload_dir/'~app.user.user.image.src) }}" alt="image" class="imaged  w36">
+                        </div>
+                        <div class="in">
+                            <strong>{{app.user.user.nom}} {{app.user.user.prenom}}</strong>
+                            <div class="text-muted">{{config.accno}}</div>
+                        </div>
+                        <a href="index.html#" class="btn btn-link btn-icon sidebar-close" data-bs-dismiss="modal">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </a>
+                    </div>
+                    <!-- * profile box -->
+                    <!-- balance -->
+                    <div class="sidebar-balance">
+                        <div class="listview-title">Solde</div>
+                        <div class="in">
+                            <h1 class="amount">{{ app.user.user.account.balance | format_currency(config.currency) }}</h1>
+                        </div>
+                    </div>
+                    <!-- * balance -->
+
+                  
+
+                    <!-- menu -->
+                    <div class="listview-title mt-1">Menu</div>
+                    <ul class="listview flush transparent no-line image-listview">
+                        <li>
+                            <a href="{{ path('bk_home') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="pie-chart-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Tableau de bord
+                                   
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bk_statement') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Relevé électronique
+                                     <span class="badge badge-primary">{{ app.user.user.account.transactions | length }}</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bk_intl') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="apps-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Transfert
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bk_cc_list') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Carte de crédit
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bk_loan_ask') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Demande de prêt
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bk_loan') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Menu des prêts
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bk_recip') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Mes destinataires
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bk_help') }}" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Obtenir de l'aide
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- * menu -->
+
+                
+
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * App Sidebar -->
+
+
+
+    <!-- iOS Add to Home Action Sheet -->
+    <div class="modal inset fade action-sheet ios-add-to-home" id="ios-add-to-home-screen" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add to Home Screen</h5>
+                    <a href="index.html#" class="close-button" data-bs-dismiss="modal">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div class="action-sheet-content text-center">
+                        <div class="mb-1"><img src="{{ asset('new assets/assets/img/icon/192x192.png') }}" alt="image" class="imaged w64 mb-2">
+                        </div>
+                        <div>
+                            Install <strong>Finapp</strong> on your iPhone's home screen.
+                        </div>
+                        <div>
+                            Tap <ion-icon name="share-outline"></ion-icon> and Add to homescreen.
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-block" data-bs-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * iOS Add to Home Action Sheet -->
+
+
+    <!-- Android Add to Home Action Sheet -->
+    <div class="modal inset fade action-sheet android-add-to-home" id="android-add-to-home-screen" tabindex="-1"
+        role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add to Home Screen</h5>
+                    <a href="index.html#" class="close-button" data-bs-dismiss="modal">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div class="action-sheet-content text-center">
+                        <div class="mb-1">
+                            <img src="{{ asset('new assets/assets/img/icon/192x192.png') }}" alt="image" class="imaged w64 mb-2">
+                        </div>
+                        <div>
+                            Install <strong>Finapp</strong> on your Android's home screen.
+                        </div>
+                        <div>
+                            Tap <ion-icon name="ellipsis-vertical"></ion-icon> and Add to homescreen.
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-block" data-bs-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * Android Add to Home Action Sheet -->
+
+
+
+    <div id="cookiesbox" class="offcanvas offcanvas-bottom cookies-box" tabindex="-1" data-bs-scroll="true"
+        data-bs-backdrop="false">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">We use cookies</h5>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non lacinia quam. Nulla facilisi.
+                <a href="index.html#" class="text-secondary"><u>Learn more</u></a>
+            </div>
+            <div class="buttons">
+                <a href="index.html#" class="btn btn-primary btn-block" data-bs-dismiss="offcanvas">I understand</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========= JS Files =========  -->
+    <!-- Bootstrap -->
+    <script src="{{ asset('new assets/assets/js/lib/bootstrap.bundle.min.js')}}"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="{{ asset('new assets/assets/js/plugins/splide/splide.min.js')}}"></script>
+    <!-- Base Js File -->
+
+
+    <script>
+        // Add to Home with 2 seconds delay.
+        AddtoHome("2000", "once");
+    </script>
+     <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'fr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+
+</body>
+
+</html>
+

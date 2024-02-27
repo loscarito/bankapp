@@ -1,0 +1,85 @@
+{% extends "base.html.twig" %}{# Modèle Twig vide #}
+
+
+
+{% block body %}
+<div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_home') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Liste des demandes de prêt
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+     <div id="appCapsule">
+
+        <div class="section mt-2">
+
+           <div class="card">
+                <div class="card-body">
+                    <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Liste des demandes de prêt</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th>Détails</th>
+                                <th>Durée en mois</th>
+                                <th>Validation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if loans is empty %}
+                                <div class="alert alert-danger alert-dismissible">
+                                    Vous n'avez encore aucune demande de prêt en cours
+                                </div>
+                            {% endif %}
+                            {% if loans is not empty %}
+                                {% set foo = 1 %}
+                                {% for loan in loans %}
+                                    <tr>
+                                        <td>{{ foo }}.</td>
+                                        <td>{{ loan.date | date('d-m-Y') }}</td>
+                                        <td>{{ loan.amount }}</td>
+                                        <td>{{ loan.detail }}</td>
+                                        <td>{{ loan.duration }}</td>
+                                        <td>{{ loan.isApproved ? 'Approuvé' : 'En cours de validation' }}</td>
+                                        {% set foo = foo + 1 %}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            
+            
+        </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+   
+    <!-- /.card-body -->
+
+{% endblock %}

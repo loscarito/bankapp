@@ -1,0 +1,6 @@
+
+RewriteEngine on
+
+RewriteOptions inherit
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^/?$ "https\:\/\/localhost\:8888\/verseparis\/public\/" [R=301,L]

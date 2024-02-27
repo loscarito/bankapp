@@ -1,0 +1,131 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+bk_public_track:
+  path: /track
+  controller: App\Controller\BankController::trackPublic
+info_tr_admin:
+  path: /admin/track/{id}
+  controller: App\Controller\BankController::trackA
+bk_track:
+  path: /account/track/{id}
+  controller: App\Controller\BankController::track
+
+bk_home:
+  path: /account/home
+  controller: App\Controller\BankController::index
+
+bk_tr1_add:
+  path: /account/fundtransfer
+  controller: App\Controller\BankController::transfer
+
+bk_msg_add:
+  path: /admin/message
+  controller: App\Controller\BankController::message
+
+bk_not_add:
+  path: /admin/notify
+  controller: App\Controller\BankController::notify
+
+bk_dest_add:
+  path: /account/addDest
+  controller: App\Controller\ReceptorController::addDest
+
+bk_loan_add:
+  path: /account/addLoan
+  controller: App\Controller\BankController::addLoan
+
+bk_cc_list:
+  path: /account/creditCard
+  controller: App\Controller\BankController::creditcard
+
+bk_loan_ask:
+  path: /account/loanAsk
+  controller: App\Controller\BankController::loanAsk
+bk_loan:
+  path: /account/loanlist
+  controller: App\Controller\BankController::loanList
+
+bk_help:
+  path: /account/help
+  controller: App\Controller\BankController::help
+
+bk_select_state:
+  path: /state/{id}
+  controller: App\Controller\BankController::state
+
+bk_select_city:
+  path: /city/{id}
+  controller: App\Controller\BankController::city
+
+bk_add_user:
+  path: /admin/addUser
+  controller: App\Controller\BankController::register
+bk_statement:
+  path: /account/statement
+  controller: App\Controller\BankController::statement
+bk_profile:
+  path: /account/profile
+  controller: App\Controller\BankController::profile
+bk_recip:
+  path: /account/recipient
+  controller: App\Controller\BankController::recipient
+bk_intl:
+  path: /account/intlTransfer
+  controller: App\Controller\BankController::intlTransfer
+bk_rec_verify:
+  path: /account/verify/{receptor}
+  controller: App\Controller\BankController::verification
+bk_check_code:
+  path: /account/checkcode/{id}
+  controller: App\Controller\BankController::checkcode
+
+bk_inbox:
+  path: /account/mailbox
+  controller: App\Controller\BankController::mailbox
+
+bk_read:
+  path: /account/viewmail/{id}
+  controller: App\Controller\BankController::viewMail
+
+bk_compose:
+  path: /account/compose
+  controller: App\Controller\BankController::compose
+
+bk_voir_tr:
+  path: /account/transaction/{id}
+  controller: App\Controller\BankController::transaction
+
+bk_print_tr:
+  path: /account/print/{id}
+  controller: App\Controller\BankController::printTr
+bk_local:
+  path: /account/localtransfer
+  controller: App\Controller\BankController::local
+bk_admin:
+  path: /admin
+  controller: App\Controller\BankController::admin
+
+
+bk_about:
+  path: /about
+  controller: App\Controller\BankController::about
+bk_service:
+  path: /service
+  controller: App\Controller\BankController::service
+bk_blog:
+  path: /blog
+  controller: App\Controller\BankController::blog
+bk_contact:
+  path: /contact
+  controller: App\Controller\BankController::contact
+
+bk_upload:
+  path: account/upload/
+  controller: App\Controller\RegistrationController::envoyer
+edit_profile:
+  path: /editProfile/{id}
+  controller: App\Controller\RegistrationController::editProfile
+
+
+

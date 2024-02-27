@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le destinataire{% endblock %}
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_home') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Menu principal
+                <span class="right badge badge-danger">Nouveau</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('user_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Liste des utilisateurs
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('account_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Liste des comptes
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('message_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Liste des messages
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('loan_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Prêt
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Carte de crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('receptor_index') }}" class="nav-link active">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Tous les destinataires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('transaction_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Toutes les transactions
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+{% endblock %}
+{% block body %}
+    <h1>Modifier le destinataire</h1>
+
+    {{ include('receptor/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    <a href="{{ path('receptor_index') }}">Retour à la liste</a>
+
+    {{ include('receptor/_delete_form.html.twig') }}
+{% endblock %}

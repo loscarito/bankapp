@@ -1,0 +1,113 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}InfoTr{% endblock %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_admin') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Menu Principal
+                <span class="right badge badge-danger">Nouveau</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('user_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Liste des Utilisateurs
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('account_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Liste des Comptes
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('message_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Liste des Messages
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('loan_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Prêt
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Carte de Crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('receptor_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Tous les Bénéficiaires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('transaction_index') }}" class="nav-link active">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Toutes les Transactions
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block body %}
+    <h1>InfoTr</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ info_tr.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ info_tr.date ? info_tr.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ info_tr.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('info_tr_index',{'id': sid}) }}">Retour à la liste</a>
+
+    <a href="{{ path('info_tr_edit', {'id': info_tr.id,'sid': info_tr.transaction.id}) }}">Modifier</a>
+
+    {{ include('info_tr/_delete_form.html.twig') }}
+{% endblock %}

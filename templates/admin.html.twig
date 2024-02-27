@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ config.siteName }} BANK</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style type="text/css">/* Chart.js */
+        @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style>
+
+    {% block style %}
+    {% endblock %}
+    <!-- Font Awesome -->
+    </head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+    </ul>
+    <!-- Liens de navigation de gauche -->
+    <a href="javascript:void()" onclick="window.location.hash=&#39;#googtrans(en)&#39;;location.reload();" style="margin-right:5px;"><img src="{{ asset('img/en.png') }}"></a>
+    <a href="javascript:void()" onclick="window.location.hash=&#39;#googtrans(fr)&#39;;location.reload();" style="margin-right:5px;"><img src="{{ asset('img/fr.png') }}"></a>
+    <a href="javascript:void()" onclick="window.location.hash=&#39;#googtrans(es)&#39;;location.reload();" style="margin-right:5px;"><img src="{{ asset('img/es.png') }}"></a>
+    <a href="javascript:void()" onclick="window.location.hash=&#39;#googtrans(it)&#39;;location.reload();" style="margin-right:5px;"><img src="{{ asset('img/it.png') }}"></a>
+    <a href="javascript:void()" onclick="window.location.hash=&#39;#googtrans(de)&#39;;location.reload();" style="margin-right:5px;"><img src="{{ asset('img/de.png') }}"></a>
+    <a href="javascript:void()" onclick="window.location.hash=&#39;#googtrans(pt)&#39;;location.reload();" style="margin:0px;"><img src="{{ asset('img/pt.png') }}"></a>
+    <a href="javascript:void()"  onclick="window.location.hash='#googtrans(el)';location.reload();" style="margin:0px;"><img src="{{ asset('img/bk.png') }}"></a>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'fr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- FORMULAIRE DE RECHERCHE -->
+    <!-- TradingView Widget DÉBUT -->
+
+
+    <!-- Liens de navigation de droite -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Menu de messagerie déroulant -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-comments"></i>
+                <span class="badge badge-danger navbar-badge">{% set foo=0 %}{% for message in app.user.user.messages %}{% if message.isRead==false %}{% set foo=foo+1 %}{% endif %}{% endfor %}{{ foo }}</span>
+            </a>
+
+        </li>
+        <!-- Menu déroulant de notifications -->
+
+    </ul>
+</nav>
+
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Logo de la marque -->
+    <a href="{{ path('bk_home') }}" class="brand-link">
+        <img src="{{ asset('img/AdminLTELogo.png') }}"
+             alt="Logo AdminLTE"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">{{ config.siteName }} BANQUE DE FRANCE</span>
+    </a>
+
+    <!-- Barre latérale -->
+    <div class="sidebar">
+        <!-- Utilisateur de la barre latérale (facultatif) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ asset('img/atb.png') }}" class="img-circle elevation-2" alt="Image de l'utilisateur">
+            </div>
+            <div class="info">
+                <a href="{{ path('bk_profile') }}" class="d-block">{{ app.user.user.prenom }} {{ app.user.user.nom }}</a>
+            </div>
+        </div>
+
+        <!-- Menu de la barre latérale -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Ajoutez des icônes aux liens en utilisant la classe .nav-icon
+                     avec Font Awesome ou toute autre bibliothèque d'icônes -->
+
+                {% block menu %}
+                {% endblock %}
+            </ul>
+        </nav>
+        <!-- / Menu de la barre latérale -->
+    </div>
+    <!-- / Barre latérale -->
+</aside>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+    <!-- En-tête du contenu (En-tête de la page) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Tableau de bord de mon compte</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Bienvenue : {{ app.user.user.prenom }} {{ app.user.user.nom }}, adresse IP de l'utilisateur connecté : {{ app.request.clientIp }}</a></li>
+                        <li class="breadcrumb-item active">Heure de connexion : {{ "now"|date("m/d/Y") }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Contenu principal -->
+    <section class="content">
+
+        <!-- Boîte par défaut -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Mon compte</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Réduire">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Fermer">
+                        <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <button class="invisible swalDefaultWarning">1</button>
+                <button class="invisible swalDefaultSuccess">1</button><button class="invisible swalDefaultWarning2">1</button>
+                {% block body %}
+                {% endblock %}
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="##">
+                                    Sécurisé
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="##">
+                                    Fiable
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="##">
+                                    Facile
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright ml-auto">
+                        Copyright ©
+                        2002-2020, La Banque Strength. Tous droits réservés <img src="{{ asset('img/secure.gif') }}">
+                    </div>
+                </div>
+
+            <!-- /.card-footer-->
+        </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.0.4
+    </div>
+</footer>
+
+<!-- Panneau de configuration -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Le contenu du panneau de configuration va ici -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+<!-- AdminLTE App -->
+<script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+
+<script src="{{ asset('js/adminlte.min.js') }}"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('js/demo.js') }}"></script>
+<script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+<script src="{{ asset('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+<script src="{{ asset('js/all.js') }}"></script>
+<script src="{{ asset('js/pages/dashboard3.js') }}"></script>
+<script type="text/javascript">
+    $(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 25000
+        });
+
+        $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultInfo').click(function() {
+            Toast.fire({
+                icon: 'info',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultError').click(function() {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultWarning').click(function() {
+            Toast.fire({
+                icon: 'warning',
+                title: 'You need to add recipient before transferring funds.'
+            })
+        });
+        $('.swalDefaultWarning2').click(function() {
+            Toast.fire({
+                icon: 'warning',
+                title: 'You have unverified recipient, kindly verify them before transferring funds to them.'
+            })
+        });
+        $('.swalDefaultQuestion').click(function() {
+            Toast.fire({
+                icon: 'question',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+    });
+        </script>
+
+{% block script %}
+{%  endblock  %}
+</body>
+</html>

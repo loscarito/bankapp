@@ -1,0 +1,103 @@
+{% extends "base.html.twig" %} {# Modèle Twig vide #}
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_home') }}" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Tableau de bord
+                <i class="right"></i>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_statement') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Relevé électronique
+                <span class="badge badge-info right">{{ app.user.user.account.transactions | length }}</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_tr1_add') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Transfert
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_cc_list') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Carte de crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan_ask') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Demander un prêt
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_loan') }}" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Menu des prêts
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_recip') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Mes bénéficiaires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tools"></i>
+            <p>
+                Paramètres
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('bk_help') }}" class="nav-link">
+            <i class="nav-icon fas fa-question-circle"></i>
+            <p>
+                Obtenir de l'aide
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <form action="{{ path('bk_tr_add')}}" method="POST" class="">
+        {{ form_rest(form) }}
+        <button type="submit" class="btn btn-info pull-right">Valider</button>
+    </form>
+
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}

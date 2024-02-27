@@ -1,0 +1,230 @@
+{% extends "base.html.twig" %}{# Modèle Twig de base vide #}
+{% block body %}
+<div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_statement') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Transaction
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+    <div id="appCapsule" class="full-height">
+        
+        <!-- App Capsule -->
+        {% if transaction.level == 100 %}
+         <div class="section mt-2 mb-2">
+
+
+            <div class="listed-detail mt-3">
+                <div class="icon-wrapper">
+                    <div class="iconbox">
+                        <ion-icon name="{{ transaction.isCredit ? 'arrow-back-outline' : 'arrow-forward-outline' }}"></ion-icon>
+                    </div>
+                </div>
+                <h3 class="text-center mt-2">{{ transaction.isCredit ? 'Paiement reçu' : 'Paiement envoyé' }}</h3>
+            </div>
+
+            <ul class="listview flush transparent simple-listview no-space mt-3">
+                <li>
+                    <strong>Statut</strong>
+                    <span class="text-success">Complet</span>
+                </li>
+                <li>
+                    <strong>{{ transaction.isCredit ? 'De' : 'A' }}</strong>
+                    <span>{{ transaction.depositor }}</span>
+                </li>
+            
+                <li>
+                    <strong>Catégorie de la transaction</strong>
+                    <span>{{ transaction.description }}</span>
+                </li>
+                <li>
+                    <strong>Reçu délivré</strong>
+                    <span>Oui</span>
+                </li>
+                <li>
+                    <strong>Date</strong>
+                    <span>{{ transaction.date |date()}}</span>
+                </li>
+                <li>
+                    <strong>Amount</strong>
+                    <h3 class="m-0">{{ transaction.amount| format_currency(config.currency) }}</h3>
+                </li>
+            </ul>
+
+
+        </div>
+        {% else %}
+             <div class="section mt-2 mb-2">
+
+
+            <div class="listed-detail mt-3">
+                <div class="icon-wrapper">
+                    <div class="iconbox">
+                        <ion-icon name="{{ transaction.isCredit ? 'arrow-back-outline' : 'arrow-forward-outline' }}"></ion-icon>
+                    </div>
+                </div>
+                <h3 class="text-center mt-2">{{ transaction.isCredit ? 'Paiement reçu' : 'Paiement envoyé' }}</h3>
+            </div>
+
+            <ul class="listview flush transparent simple-listview no-space mt-3">
+                <li>
+                    <strong>Statut</strong>
+                    <span class="text-success">Transaction en cours</span>
+                </li>
+                <li>
+                    <strong>{{ transaction.isCredit ? 'De' : 'A' }}</strong>
+                    <span align="right">{{ transaction.recipient.nom }} {{ transaction.recipient.prenom }}<br>
+                     {{ transaction.recipient.address }}<br>
+                                    {{ transaction.recipient.ville }}, {{ transaction.recipient.pays }} {{ transaction.recipient.postal }}<br>
+                                    Téléphone : {{ transaction.recipient.tel }}<br>
+                                    E-mail : {{ transaction.recipient.email }}</span>
+                </li>
+            
+                <li>
+                    <strong>Catégorie de la transaction</strong>
+                    <span>{{ transaction.description }}
+                    </span>
+                </li>
+                <li>
+                    <strong>Reçu délivré</strong>
+                    <span>non</span>
+                </li>
+                <li>
+                    <strong>Date</strong>
+                    <span>{{ transaction.date |date()}}</span>
+                </li>
+                <li>
+                    <strong>Amount</strong>
+                    <h3 class="m-0">{{ transaction.amount| format_currency(config.currency) }}</h3>
+                </li>
+            </ul>
+
+            <div class="card-body">
+
+                   
+
+                    <a href="{{ path('bk_track',{'id':transaction.id}) }}" class="btn btn-primary btn-block">Suivre la transaction</a>
+
+            </div>
+        </div>
+        {% endif %}
+       
+
+    </div>
+    <!-- * App Capsule -->
+{% endblock %}
+{#
+    <!-- Section de contenu -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="callout callout-warning">
+                        <h5><i class="fas fa-info"></i> Remarque :</h5>
+                        Votre transaction est {{ transaction.status }}.
+                    </div>
+
+
+                    <!-- Contenu principal -->
+                    <div class="invoice p-3 mb-3">
+                        <!-- Ligne du titre -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>
+                                    <i class="fas fa-globe"></i> {{ config.siteName }} FRANCE.
+                                    <small class="float-right">Date : {{ transaction.date|date('m/d/Y H:i:s') }}</small>
+                                </h4>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- Ligne d'informations -->
+                        <div class="row invoice-info">
+                            <div class="col-sm-4 invoice-col">
+                                De
+                                <address>
+                                    <strong>{{ app.user.user.nom }} {{ app.user.user.prenom }}.</strong><br>
+                                    {{ app.user.user.address }}<br>
+                                    {{ app.user.user.states }}, {{ app.user.user.countries }} {{ app.user.user.postal }}<br>
+                                    Téléphone : {{ app.user.user.tel }}<br>
+                                    E-mail : {{ app.user.user.email }}
+                                </address>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4 invoice-col">
+                                À
+                                <address>
+                                    <strong>{{ transaction.recipient.nom }} {{ transaction.recipient.prenom }}</strong><br>
+                                    {{ transaction.recipient.address }}<br>
+                                    {{ transaction.recipient.ville }}, {{ transaction.recipient.pays }} {{ transaction.recipient.postal }}<br>
+                                    Téléphone : {{ transaction.recipient.tel }}<br>
+                                    E-mail : {{ transaction.recipient.email }}
+                                </address>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4 invoice-col">
+                                <b>Transaction n°{{ transaction.id }}</b><br>
+                                <br>
+                                <b>ID de la transaction :</b> TX-{{ config.siteName }}{{ transaction.id }}<br>
+                                <b>Échéance du paiement :</b> {{ transaction.date|date('m/d/Y H:i:s') }}<br>
+                                <b>Compte :</b> {{ transaction.account.accountNo }}
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <!-- Ligne du tableau -->
+                        <div class="row">
+                            <div class="col-12 table-responsive">
+                                <h5>Détails de la banque bénéficiaire</h5>
+                                <br>
+                                Code SWIFT/BIC : {{ transaction.recipient.swift }}
+                                <br>
+                                Numéro de compte : {{ transaction.recipient.accountNo }}
+                                <br>
+                                IBAN : {{ transaction.recipient.iban }}
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="row">
+                            <!-- Colonne des paiements acceptés -->
+                            <div class="col-6"> <br>
+                                <h5>Détails du transfert</h5>
+                                <br>
+                                Montant : <h3> {{  transaction.amount | format_currency(config.currency)  }}</h3>
+
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-6">
+                                <!-- Colonne vide -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <!-- Cette ligne n'apparaîtra pas à l'impression -->
+                        <div class="row no-print">
+                            <div class="col-12">
+                                <a href="{{ path('bk_print_tr',{'id':transaction.id}) }}" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Imprimer</a>
+
+                                <a href="{{ path('bk_track',{'id':transaction.id}) }}" target="_blank" class="btn btn-info"><i class="fas fa-search"></i> Suivre votre transaction</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.invoice -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+#}

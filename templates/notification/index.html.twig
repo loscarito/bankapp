@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des Notifications{% endblock %}
+
+{% block body %}
+    <h1>Index des Notifications</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Numéro</th>
+                <th>Nouveau</th>
+                <th>Contenu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notification in notifications %}
+            <tr>
+                <td>{{ notification.id }}</td>
+                <td>{{ notification.type }}</td>
+                <td>{{ notification.number }}</td>
+                <td>{{ notification.new }}</td>
+                <td>{{ notification.contenu }}</td>
+                <td>
+                    <a href="{{ path('notification_show', {'id': notification.id}) }}">afficher</a>
+                    <a href="{{ path('notification_edit', {'id': notification.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('notification_new') }}">Créer un nouveau</a>
+{% endblock %}

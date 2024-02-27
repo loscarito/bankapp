@@ -1,0 +1,130 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Liste des Messages{% endblock %}
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_admin') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Menu Principal
+                <span class="right badge badge-danger">Nouveau</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('user_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Liste des Utilisateurs
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('account_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Liste des Comptes
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('message_index') }}" class="nav-link active">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Liste des Messages
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('loan_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Prêt
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Carte de Crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('receptor_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Tous les Bénéficiaires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('transaction_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Toutes les Transactions
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+{% endblock %}
+{% block body %}
+    <h1>Liste des Messages</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>De</th>
+                <th>Email de</th>
+                <th>Petite Description</th>
+                <th>À</th>
+                <th>Sujet</th>
+                <th>Contenu</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for message in messages %}
+            <tr>
+                <td>{{ message.id }}</td>
+                <td>{{ message.fromu }}</td>
+                <td>{{ message.fromemail }}</td>
+                <td>{{ message.smalldesc }}</td>
+                <td>{{ message.toa }}</td>
+                <td>{{ message.subject }}</td>
+                <td>{{ message.content }}</td>
+                <td>{{ message.type }}</td>
+                <td>{{ message.date ? message.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('message_show', {'id': message.id}) }}">Voir</a>
+                    <a href="{{ path('message_edit', {'id': message.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('message_new') }}">Créer un nouveau</a>
+{% endblock %}

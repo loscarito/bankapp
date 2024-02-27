@@ -1,0 +1,94 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Edit Account{% endblock %}
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_admin') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Main Menu
+                <span class="right badge badge-danger">New</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('user_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                User List
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('account_index') }}" class="nav-link active">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Account List
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('message_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Message List
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('loan_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Loan
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                credit card
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('receptor_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                All recipient
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('transaction_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                All transaction
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+{% endblock %}
+{% block body %}
+    <h1>Edit Account</h1>
+
+    {{ include('account/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('account_index') }}">back to list</a>
+
+    {{ include('account/_delete_form.html.twig') }}
+{% endblock %}

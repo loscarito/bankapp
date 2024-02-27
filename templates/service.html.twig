@@ -1,0 +1,154 @@
+{% extends 'base1.html.twig' %}
+{% block menu %}
+    <li><a href="{{ path('bk_accueil') }}">Accueil</a></li>
+    <li><a href="{{ path('bk_about') }}">À propos</a></li>
+
+    <li><a style="color: #ffce3a;" href="{{ path('bk_service') }}">Services</a></li>
+
+    
+    <li><a href="{{ path('bk_public_track') }}">Suivre la transaction</a></li>
+    <li><a href="{{ path('bk_contact') }}">Contact</a></li>
+{% endblock %}
+{% block body %}
+    <!-- zone de miette de pain de l'À propos commence -->
+         <section class="breadcrumb__area pt-165 pb-150 p-relative z-index-1 fix" data-bg-color="#16243E">
+            <div class="breadcrumb__bg" data-background="{{ ('assets/img/breadcrumb/bg.png')}}"></div>
+            <div class="container">
+               <div class="arow align-items-center">
+                  <div class="col-sm-6">
+                     <div class="breadcrumb__content">
+                        <h3 class="breadcrumb__title">Services</h3>
+                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                     <div class="breadcrumb__content">
+                     <div class="breadcrumb__list text-center text-sm-end">
+                        <span><a href="{{path('bk_accueil')}}">Accueil</a></span>
+                        <span class="dvdr"><i class="fa-regular fa-angle-right"></i></span>
+                        <span>Services</span>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+     <!-- zone de miette de pain de l'À propos fin -->
+
+    <!-- ##### Zone des services commence ###### -->
+        <section class="services-area section-padding-100-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- En-tête de section -->
+                        <div class="section-heading text-center mb-100">
+                            <div class="line"></div>
+                            <p>Jetez un œil à nos</p>
+                            <h2>Nos services</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Zone de service unique -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="200ms">
+                            <div class="icon">
+                                <i class="icon-profits"></i>
+                            </div>
+                            <div class="text">
+                                <h5>Prêts de fonds de roulement</h5>
+                                <p>Obtenez du crédit d'exportation, une facilité de découvert, des garanties bancaires et d'autres produits de {{ config.siteName }} conçus pour répondre à vos besoins en fonds de roulement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone de service unique -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="icon">
+                                <i class="icon-money-1"></i>
+                            </div>
+                            <div class="text">
+                                <h5>Prêt à terme</h5>
+                                <p>Bénéficiez de prêts à terme pour l'achat d'actifs commerciaux, la création d'une nouvelle unité industrielle ou l'extension/modernisation de votre unité existante.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone de service unique -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="400ms">
+                            <div class="icon">
+                                <i class="icon-coin"></i>
+                            </div>
+                            <div class="text">
+                                <h5>Services bancaires personnels</h5>
+                                <p>Découvrez les services bancaires personnels et les produits disponibles chez {{ config.siteName }} pour vous aider à gérer vos finances, acheter une maison, investir, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone de service unique -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="500ms">
+                            <div class="icon">
+                                <i class="icon-smartphone-1"></i>
+                            </div>
+                            <div class="text">
+                                <h5>Services bancaires aux entreprises</h5>
+                                <p>Les services bancaires aux entreprises sont les transactions financières d'une entreprise avec une institution qui fournit des prêts aux entreprises, du crédit, des comptes d'épargne et des comptes chèques, spécialement conçus pour les entreprises et non pour les particuliers.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone de service unique -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="600ms">
+                            <div class="icon">
+                                <i class="icon-diamond"></i>
+                            </div>
+                            <div class="text">
+                                <h5>Prêts aux entreprises faciles</h5>
+                                <p>Prêts sur fonds de roulement contre des biens commerciaux, industriels et résidentiels.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone de service unique -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="700ms">
+                            <div class="icon">
+                                <i class="icon-piggy-bank"></i>
+                            </div>
+                            <div class="text">
+                                <h5>Services commerciaux</h5>
+                                <p>{{ config.siteName }} propose une large gamme de services commerciaux tels que LC, BG, virements, importations, exportations, etc. pour répondre à vos besoins de financement commercial.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- ##### Zone des services fin ###### -->
+
+       <!-- zone CTA commence -->
+         <section class="tp-cta-area p-relative">
+            <div class="tp-cta-bg"></div>
+            <div class="container">
+               <div class="tp-cta-bg-wrapper p-relative" data-background="{{ ('assets/img/cta/bg-shape.png')}}">
+                  <div class="row">
+                     <div class="col-lg-6">
+                        <h3 class="tp-cta-title">Soyez informé de l'événement ! <br> Abonnez-vous aujourd'hui</h3>
+                     </div>
+                     <div class="col-lg-6">
+                        <div class="tp-cta-email p-relative">
+                           <input type="email" placeholder="Adresse e-mail">
+                           <button> <span><i class="fa-solid fa-envelope"></i> S'abonner</span></button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- zone CTA fin -->
+{% endblock %}

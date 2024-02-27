@@ -1,0 +1,142 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Index des destinataires{% endblock %}
+{% block menu %}
+    <li class="nav-item">
+        <a href="{{ path('bk_home') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Menu principal
+                <span class="right badge badge-danger">Nouveau</span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('user_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+                Liste des utilisateurs
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('account_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+                Liste des comptes
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('message_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+                Liste des messages
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('loan_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+                Prêts
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>
+                Cartes de crédit
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('receptor_index') }}" class="nav-link active">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Tous les destinataires
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ path('transaction_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Toutes les transactions
+                <span class="right badge badge-danger"></span>
+            </p>
+        </a>
+    </li>
+
+{% endblock %}
+{% block body %}
+    <h1>Index des destinataires</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Swift</th>
+                <th>Iban</th>
+                <th>Numéro de compte</th>
+                <th>Pays</th>
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Code postal</th>
+                <th>Téléphone</th>
+                <th>Code de vérification</th>
+                <th>Vérifié</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for receptor in receptors %}
+            <tr>
+                <td>{{ receptor.id }}</td>
+                <td>{{ receptor.nom }}</td>
+                <td>{{ receptor.prenom }}</td>
+                <td>{{ receptor.swift }}</td>
+                <td>{{ receptor.iban }}</td>
+                <td>{{ receptor.accountNo }}</td>
+                <td>{{ receptor.pays }}</td>
+                <td>{{ receptor.ville }}</td>
+                <td>{{ receptor.address }}</td>
+                <td>{{ receptor.email }}</td>
+                <td>{{ receptor.postal }}</td>
+                <td>{{ receptor.tel }}</td>
+                <td>{{ receptor.verificode }}</td>
+                <td>{{ receptor.isVerify ? 'Oui' : 'Non' }}</td>
+                <td>{{ receptor.date ? receptor.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('receptor_show', {'id': receptor.id}) }}">Voir</a>
+                    <a href="{{ path('receptor_edit', {'id': receptor.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('receptor_new') }}">Créer un nouveau</a>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}{# Modèle Twig vide #}
+
+
+{% block body %}
+<div class="appHeader">
+        <div class="left">
+            <a href="{{ path('bk_home') }}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Transfert
+        </div>
+        <div class="right">
+            <a href="{{ path('bk_inbox') }}" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">{{ app.user.user.messages |length }}</span>
+            </a>
+        </div>
+    </div>
+
+     <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2">
+             <div class="card">
+                <div class="card-body">
+                 <!-- * App Capsule -->
+    <a href="{{ path('bk_dest_add') }}" class="btn btn-warning">Ajouter un destinataire</a><br><br>
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> Alerte !</h5>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% if app.user.user.receptors is empty %}
+
+    {% endif %}
+    {% if app.user.user.receptors is not empty %}
+        {% set foo=0 %}
+        {% for receptor in  app.user.user.receptors %}
+            {% if receptor.isVerify %}
+                {% set foo=foo+1 %}
+            {% endif %}
+        {% endfor %}
+        {% if foo!=0 %}
+            <div class="modal-body">
+                        <div class="action-sheet-content">
+                            <form action="{{ path('bk_intl')}}" method="POST">
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account2d">Destinataire</label>
+                                        {{ form_widget(form.recipient,{'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label for="exampleInputEmail1">Montant</label>
+                                        {{ form_widget(form.Amount,{'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <label for="exampleInputEmail1">Détails du transfert</label>
+                                    {{ form_widget(form.description,{'attr': {'class': 'form-control'}}) }}
+                                </div>
+
+                                <div class="form-group basic">
+                                    {{ form_rest(form) }}
+                                    <button type="submit" class="btn btn-info pull-right">Valider</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+           
+        {% endif %}
+        {% if foo==0 %}
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Alerte !</h5>
+                Vous n'avez pas encore de destinataires vérifiés.
+            </div>
+        {% endif %}
+
+    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+   
+
+{% endblock %}
